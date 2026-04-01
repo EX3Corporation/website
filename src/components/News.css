@@ -71,6 +71,17 @@
   color: var(--text-dim);
   line-height: 1.65;
 }
+.news__excerpt a {
+  color: var(--accent-bright);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+.news__excerpt a:hover,
+.news__excerpt a:focus-visible {
+  color: var(--text);
+}
 
 .news__arrow {
   font-size: 1.1rem;

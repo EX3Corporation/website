@@ -2,19 +2,19 @@ import './News.css'
 
 const news = [
   {
-    date: '2025-03-24',
+    date: '2026-04-01',
+    cat: 'EX3 Corporation',
+    title: 'EX3 Corporation to focus on AI, cryptocurrency, and NFTs',
+    body: 'MELBOURNE - 1st APRIL - EX3 Corporation is proud to announce that we will be heavily, relentlessly focusing on cryptocurrency and NFTs in the foreseeable future. We will be releasing our own memecoin, and we will invest heavily in all the markets. <a href="https://twitter.com/ex3corp/status/2039151608945361232">Read more on Twitter.</a>'
+  },
+  {
+    date: '2026-03-24',
     cat: 'EX3 Corporation',
     title: 'Website v2 Live',
     body: 'We have launched our new, groundbreaking, intricate, beautiful website.'
   },
   {
-    date: '2025-03-23',
-    cat: 'Products',
-    title: 'ex3 (the bot) may be shutting down soon',
-    body: 'https://ex3.icu/i/shutdown',
-  },
-  {
-    date: '2025-02-26',
+    date: '2026-02-26',
     cat: 'Infrastructure',
     title: 'Introducing escope',
     body: 'MELBOURNE - A new service dubbed "escope" has launched. The premise is simple: hand it a link, it hands you back an ephemeral redirecting link. This is groundbreaking technology that paves the way for the Modern Web 2.0.',
@@ -35,7 +35,7 @@ const news = [
     date: '2025-01-24',
     cat: 'INVESTOR Interests',
     title: 'STEAM - EX3 Corporation Secures $67bn Valuation',
-    body: 'https://steamcommunity.com/groups/ex3corp/announcements/detail/509603414731131705',
+    body: '<a href="https://steamcommunity.com/groups/ex3corp/announcements/detail/509603414731131705">https://steamcommunity.com/groups/ex3corp/announcements/detail/509603414731131705</a>',
   },
   {
     date: '1969-04-20',
@@ -63,7 +63,7 @@ export default function News() {
               </div>
               <div className="news__body">
                 <h3 className="news__title">{n.title}</h3>
-                <p className="news__excerpt">{n.body}</p>
+                <p className="news__excerpt" dangerouslySetInnerHTML={{ __html: n.body }} />
               </div>
             </article>
           ))}
