@@ -10,12 +10,12 @@ const products = [
     detail: 'voxity.dev'
   },
   {
-    id: 'escp.lol',
+    id: 'com.exerinity.escope',
     name: 'escope',
     tag: 'Tools',
     desc: 'Ephemeral Scoped Control of Persistent Endpoints',
     status: 'Production',
-    detail: 'E'
+    detail: 'escp.lol'
   },
   {
     id: 'com.exerinity.voxity',
@@ -36,6 +36,12 @@ const products = [
 ]
 
 export default function Products() {
+  const makeHref = (d) => {
+    if (!d) return null
+    if (d.match(/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//)) return d
+    if (d.includes('.')) return `https://${d}`
+    return null
+  }
   return (
     <section id="products" className="products section">
       <div className="products__bg" />
@@ -47,23 +53,36 @@ export default function Products() {
         </div>
 
         <div className="products__grid">
-          {products.map(p => (
-            <div key={p.id} className="product-card">
-              <div className="product-card__top">
-                <span className="product-card__id">{p.id}</span>
-                <span className={`product-card__status product-card__status--${p.status.toLowerCase()}`}>
-                  {p.status}
-                </span>
+          {products.map(p => {
+            const href = makeHref(p.detail)
+            const content = (
+              <>
+                <div className="product-card__top">
+                  <span className="product-card__id">{p.id}</span>
+                  <span className={`product-card__status product-card__status--${p.status.toLowerCase()}`}>
+                    {p.status}
+                  </span>
+                </div>
+                <div className="product-card__tag">{p.tag}</div>
+                <h3 className="product-card__name">{p.name}</h3>
+                <p className="product-card__desc">{p.desc}</p>
+                <div className="product-card__footer">
+                  <span className="product-card__detail">{p.detail}</span>
+                  <span className="product-card__arrow">→</span>
+                </div>
+              </>
+            )
+
+            return href ? (
+              <a key={p.id} className="product-card" href={href} target="_blank" rel="noreferrer">
+                {content}
+              </a>
+            ) : (
+              <div key={p.id} className="product-card">
+                {content}
               </div>
-              <div className="product-card__tag">{p.tag}</div>
-              <h3 className="product-card__name">{p.name}</h3>
-              <p className="product-card__desc">{p.desc}</p>
-              <div className="product-card__footer">
-                <span className="product-card__detail">{p.detail}</span>
-                <span className="product-card__arrow">→</span>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

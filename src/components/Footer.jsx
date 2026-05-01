@@ -1,4 +1,5 @@
 import './Footer.css'
+import { useEffect, useState } from 'react'
 
 const year = new Date().getFullYear()
 
@@ -8,7 +9,7 @@ export default function Footer() {
     "FUCK YOU IF YOU'RE ON A MOBILE PHONE",
     'THIS IS NOT A REAL CORPORATION',
     'SHOUTOUT TO CLAUDE 4.6 FOR THIS WEBSITE',
-    'MEOW',
+    'meow~ :333',
     'BEST VIEWED WITH VIVALDI',
     'GET TRUCKING MOTHERTRUCKER',
     'VOXITY CHANGED ITS NAME FROM AUDION AFTER THE CREATOR REALIZED PANIC INC MADE A MUSIC PLAYER CALLED AUDION FOR MAC IN 1999',
@@ -16,7 +17,15 @@ export default function Footer() {
     'WE\'RE THE FUCKING ANIMALS', // Animals by Martin Garrix
     'REMEMBER TURNING ON THE NIGHT AND MOVING THROUGH THE MORNING LIGHT' // "I Remember" by deadmau5 and Kaskade
   ]
-  const randomMessage = messages[Math.floor(Math.random() * messages.length)]
+
+  const [messageIndex, setMessageIndex] = useState(() => Math.floor(Math.random() * messages.length))
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMessageIndex((i) => (i + 1) % messages.length)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [messages.length])
 
   return (
     <footer className="footer">
@@ -63,7 +72,7 @@ export default function Footer() {
       </div>
 
       <div className="footer__bottom">
-        <span className="footer__mono">{randomMessage}</span>
+        <span className="footer__mono">{messages[messageIndex]}</span>
         <span className="footer__mono"><div className="hero__badge">
           <span className="hero__badge-dot" />
           <span>ALL SYSTEMS OPERATIONAL</span>

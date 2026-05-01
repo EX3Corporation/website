@@ -43,6 +43,18 @@
   overflow: hidden;
 }
 
+a.product-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
 .product-card::before {
   content: '';
   position: absolute;
